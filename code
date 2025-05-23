@@ -1,0 +1,82 @@
+//KONVERSI MATA UANG 
+//Dari rupiah ke dolar, yen, euro, ringgit, riyal 
+#include <stdio.h>
+#include <string.h>//untuk fungsi string
+
+
+void KonversiMataUang(double rupiah, double kurs[], char mataUang[][20]) //untuk memanggil nilai konversi semua mata uang
+{
+    for(int i=1; i<=5; i++) 
+    {
+        double konversi = rupiah/kurs[i-1]; 
+        printf("%.2lf %s\n", konversi, mataUang[i-1] );
+    }
+}
+
+int main()
+{
+    //array untuk kurs dan mata uang
+    //1 (mata uang) = * (rupiah)
+    double kurs[] = {16410, 113.46, 18481, 3820, 4378}; //array 1 dimensi untuk menyimpan kurs
+    //5 mata uang
+    char mataUang[][20] = {"USD (dolar)", "JPY (yen)", "EUR (euro)", "MYR (ringgit)", "SAR (riyal)"}; //array 1 dimensi untuk menyimpan nama mata uang
+
+    char ulang[10];
+
+do
+/*looping do-while untuk membuat opsi pengguna ingin menginput lagi*/
+{
+    double rupiah; 
+    
+    while(1) //loop untuk memeriksa input pengguna
+    {
+        //input jumlah rupiah
+        printf("masukan Rupiah: ");
+        scanf("%lf", &rupiah);
+        if(rupiah >= 1) //memeriksa kondisi apakah pengguna sudah menginput dengan benar atau belum
+        {
+            break;
+            //keluar jika input sudah benar
+        }
+        else if (rupiah < 1) //pengguna tidak bisa menginput nilai < 1
+        {
+            printf("input gagal!\n");
+            /*jika input gagal, pengguna akan diminta 
+            menginput kembali jumlah rupiah*/
+        }
+    }
+
+
+    //pilihan mata uang yang ingin di konversi dari rupiah
+    printf ("pilih mata uang: \n"); 
+    for (int j=0; j<=4; j++)
+    {
+        printf("%d. %s\n", j+1, mataUang[j] ); //pilihan mata uang
+    }
+    printf("6. tampilkan semua\n"); //pilihan tambahan jika pengguna ingin menampilkan semua mata uang hasil konversi
+
+    int pilih;
+    printf("pilihan:  ");
+    scanf("%d", &pilih); //input mata uang pilihan
+
+     /*membuat hasil konversi*/
+    double Konversi = rupiah/kurs[pilih-1]; 
+     /*[pilih-1] itu untuk memanggil isi kurs 
+        di array, karena array ngitung nya dari nol. kalo [pilih 1]
+        itu nanti yang kepanggil bukan dolar tapi yen, karna
+        1 kalo di array itu adalah 2*/
+
+    if(pilih >= 1 && pilih <= 5)
+    {
+        printf("\n%.2lf %s\n", Konversi, mataUang[pilih-1]); //hasil konversi sesuai mata uang yang dipilih
+    }
+    else if (pilih == 6)
+    {
+        KonversiMataUang(rupiah, kurs, mataUang); //menampilkan hasil konversi semua mata uang
+    }
+    printf("\napakah ingin konversi lagi? \n (yes/no)\n"); //pilihan untuk mengulang input
+    scanf("%s", ulang);
+}
+while (strcmp(ulang,"yes") == 0|| strcmp(ulang,"Yes")==0); //input konversi akan di ulalng ketika pengguna input kaya 'yes' jika tidak maka program akan selesai
+    return 0;
+}
