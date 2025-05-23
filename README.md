@@ -10,10 +10,10 @@ Mini Proyek - Coding untuk Kakak Tingkat
 - Angkatan: 2023
 - Program Studi: Pendidikan Sistem dan Teknologi Informasi
   
-##💡 Permintaan Program
+## 💡 Permintaan Program
 > kakak mau dibuatkan konversi mata uang, dari rupiah ke 5 mata uang lain (dolar, yen, euro, ringgit, riyal)
  
-##🧠 Penjelasan Program
+## 🧠 Penjelasan Program
 - Bahasa pemrograman yang digunakan: C
 
 - Fitur utama:
